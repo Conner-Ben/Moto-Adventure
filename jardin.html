@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Jericó to Jardin</title>
+</head>
+<body>
+    <div class="nonnav">
+        <h1>Jericó to Jarin</h1>
+        <h2>|</h2>
+        <h2>Papaya milkshakes and wipeouts</h2>
+    </div>
+
+    <div class="viewport2">
+        <section class="photos">
+            <div class="box">
+                <img src="Jardin/foto1.JPG" alt="">
+                <p class="caption">We may be hungover .. but let's ride!</p>
+            </div>
+            <div class="box">
+                <img src="Jardin/foto2.JPG" alt="">
+                <p class="caption">landscaptual</p>
+            </div>
+            <div class="box">
+                <img src="Jardin/foto3.JPG" alt="">
+                <p class="caption">La inglesia en Jardin</p>
+            </div>
+            <div class="box"> 
+                <img src="Jardin/foto4.jpeg" alt="">
+                <p class="caption">another pueblo, another church</p>
+            </div>
+            <div class="box">
+                <img src="Jardin/foto5.JPG" alt="">
+                <p class="caption">tram ride with a view</p>
+            </div>
+            <div class="box">
+                <img src="Jardin/foto6.jpeg" alt="">
+                <p class="caption">OSHA approved</p>
+            </div>
+            <div class="box">
+                <img src="Jardin/foto7.jpeg" alt="">
+                <p class="caption">majestical</p>
+            </div>
+            <div class="box">
+                <img src="Jardin/foto8.JPG" alt="">
+                <p class="caption">La inglesia en Jardin</p>
+            </div>
+            <div class="box">
+                <img src="Jardin/foto9.JPG" alt="">
+                <p class="caption">La inglesia en Jardin</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="some-buttons2">
+        <button id="previous">Previous</button>
+        <button id="next">Next</button>
+    </div>
+
+    <!-- ADD A MEMORY SECION -->
+
+    <div class="container">
+
+        <h1>Add A Memory</h1>
+
+        <form class="form3">
+            <input type="text" class="todo-input3" placeholder="What do you remember?">
+            <button type="submit" class="add-button">Add</button>
+        </form>
+    
+    </div> 
+    <div class="list-container">  
+        <ul class="todo-items3">
+            
+        </ul>
+    </div>
+
+    <script>
+        // DOM FOR PICTURE SCROLL pages
+        const photos = document.querySelector('.photos');
+        const next = document.getElementById('next');
+        const previous = document.getElementById('previous');
+        // DOM for memory jardin 
+        const todoForm3 = document.querySelector('.form3');         
+        const todoInput3 = document.querySelector('.todo-input3');        
+        const todoItemsList3 = document.querySelector('.todo-items3');
+
+        let current_img = 0;
+        
+        // PICTURE SCROLL pages
+        next.addEventListener('click', () => {
+                if (current_img < photos.children.length - 1) {
+                    current_img++
+                    photos.style.transitionDuration = '0.5s';
+                    photos.style.transform = `translate(-${current_img * 70}vw)`;
+                    } else {
+                        return;
+                    }
+            });
+
+            previous.addEventListener('click', () => {
+                if (current_img > 0) {
+                    current_img--
+                    photos.style.transitionDuration = '0.5s';
+                    photos.style.transform = `translate(-${current_img * 70}vw)`;
+                    } else {
+                        return;
+                    }
+            });
+        // ADD MEMORY JARDIN
+        let todos3 = [];   // array for ToDo's
+
+        // event listener for form 
+        todoForm3.addEventListener('submit', function(event) {
+            event.preventDefault();     //prevent page from reloading when submitting form
+            addTodo(todoInput3.value);   // call addTodo function with input box value
+        });
+
+        // add ToDo function 
+        function addTodo(item) {
+            if (item !== '') {          // if input is not empty
+                const todo = {          // takes input and creates object(JSON syntax!)
+                    id: Date.now(),
+                    name: item, 
+                    completed: false
+            };
+                todos3.push(todo);           //add item to array
+                addToLocalStorage(todos3)    // stores and then run the render function 
+                todoInput3.value = '';       // clears text box
+            }
+        };
+
+        function renderTodos(todos3) {               // renders to the <ul> takes the array as arguments
+            todoItemsList3.innerHTML = '';           // clears the <ul> 
+            todos3.forEach(function(item) {          // loops through array   
+                const checked = item.completed ? 'checked' : null;      // checks if item is completed
+                const li = document.createElement('li');                // create <li>
+                li.setAttribute('class', 'item');                       // set li class "item"
+                li.setAttribute('data-key', item.id);                 // set data-key to item id
+                if (item.completed === true) {                          // line through completed
+                    li.classList.add('checked');
+                }                                                       // assign text to <li>
+                li.innerHTML = `<input type="checkbox" class="checkbox" ${checked}>  
+                ${item.name}
+                <button class="delete-button">X</button>`;
+                todoItemsList3.append(li);                               // assign <li> to <ul>
+            });
+        }    
+
+        function addToLocalStorage(todos3) {                             // add to localStorage w/ arrays as arguments
+            localStorage.setItem('todos3', JSON.stringify(todos3));       // convert array to JSON string (key = 'todos'/value=array)
+            renderTodos(todos3);                                         // runs entire render function after saving to localStorage to show changes
+        }
+
+        function getFromLocalStorage() {                                // function to get storage
+            const reference = localStorage.getItem('todos3');            // variable for items
+            if (reference) {                                            // if exists
+                todos3 = JSON.parse(reference);                          // array = parse the storage
+                renderTodos(todos3);                                     // run the render function to show them
+            } 
+        }
+
+        function toggle(id) {                                       // toggle to complete or not complete  
+            todos3.forEach(function(item) {                          // loop takes each item as argument  
+                if (item.id == id) {                                // if item id matches
+                    item.completed = !item.completed;               // item.completed = false
+                }                                                   // us == not === cause of different types
+            })
+            addToLocalStorage(todos3);                           // update list function
+        }
+
+        function deleteTodo(id) {                                   // delete a todo
+            todos3 = todos3.filter(function(item) {                   // filter() array, takes each item as argument
+                return item.id != id;                               // filters out <li> with id and updates array
+            });                                                     // return item.id == false ... makes new array of item.id false
+                addToLocalStorage(todos3)                            // update list function
+        }
+
+        getFromLocalStorage();                                              // initialize function to get storage and show 
+
+        todoItemsList3.addEventListener('click', function(event) {           // function listen to delete and check 'clicks'
+            if (event.target.type === 'checkbox') {                                          // if click is checkbox 
+                toggle(event.target.parentElement.getAttribute('data-key'));                 // toggle the state
+            }
+            if (event.target.classList.contains('delete-button')) {                          // if click is delete
+                deleteTodo(event.target.parentElement.getAttribute('data-key'));  // (get id from data-key attributes value                   
+            }                                                                     // of parent <li> where the delte-button 
+        });
+    </script>
+</body>
+</html>

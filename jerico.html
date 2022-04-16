@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Aguadas to Jericó</title>
+</head>
+<body>
+    <div class="nonnav">
+        <h1>Aguadas to Jericó</h1>
+        <h2>|</h2>
+        <h2>Hittin' hwy speeds and partyin' with the locals</h2>
+    </div>
+
+    <div class="viewport2">
+        <section class="photos">
+            <div class="box">
+                <img src="Jerico/photo1.JPG" alt="">
+                <p class="caption">Break on a bridge after leaving Aguadas</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo2.JPG" alt="">
+                <p class="caption">Ready to ride</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo3.JPG" alt="">
+                <p class="caption">Real class act</p>
+            </div>
+            <div class="box"> 
+                <img src="Jerico/photo4.JPG" alt="">
+                <p class="caption">The mirador just before Jericó.. after a glorious stretch of switchbacks</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo5.JPG" alt="">
+                <p class="caption">Mango con leche anyone?</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo6.jpeg" alt="">
+                <p class="caption">That's one pink church</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo7.jpeg" alt="">
+                <p class="caption">A building, on a corner, in a pueblo called Jericó</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo8.JPG" alt="">
+                <p class="caption">The jesus on a hill, above a pueblo called Jericó</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo9.JPG" alt="">
+                <p class="caption">Bless</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo10.JPG" alt="">
+                <p class="caption">Street life</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo11.JPG" alt="">
+                <p class="caption">not bland</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo12.JPG" alt="">
+                <p class="caption">glory</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo13.JPG" alt="">
+                <p class="caption">Twerk it</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo14.JPG" alt="">
+                <p class="caption">more glory</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo15.JPG" alt="">
+                <p class="caption">Rad rock bar</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo16.JPG" alt="">
+                <p class="caption">please... no more aguardiente</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo17.JPG" alt="">
+                <p class="caption">please... no more aguardiente</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo18.JPG" alt="">
+                <p class="caption">please... no more aguardiente</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo19.JPG" alt="">
+                <p class="caption">please... no more aguardiente</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo20.JPG" alt="">
+                <p class="caption">please... no more aguardiente</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo21.JPG" alt="">
+                <p class="caption">please... no more aguardiente</p>
+            </div>
+            <div class="box">
+                <img src="Jerico/photo22.JPG" alt="">
+                <p class="caption">please... no more aguardiente</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="some-buttons2">
+        <button id="previous">Previous</button>
+        <button id="next">Next</button>
+    </div>
+
+    <!-- ADD A MEMORY SECION -->
+
+    <div class="container">
+
+        <h1>Add A Memory</h1>
+
+        <form class="form2">
+            <input type="text" class="todo-input2" placeholder="What do you remember?">
+            <button type="submit" class="add-button">Add</button>
+        </form>
+    
+    </div> 
+    <div class="list-container">  
+        <ul class="todo-items2">
+            
+        </ul>
+    </div>
+
+    <script>
+        // DOM FOR PICTURE SCROLL pages
+        const photos = document.querySelector('.photos');
+        const next = document.getElementById('next');
+        const previous = document.getElementById('previous');
+        // DOM for memory jerico
+        const todoForm2 = document.querySelector('.form2');          
+        const todoInput2 = document.querySelector('.todo-input2');       
+        const todoItemsList2 = document.querySelector('.todo-items2');
+
+        let current_img = 0;
+        
+        // PICTURE SCROLL pages
+        next.addEventListener('click', () => {
+                if (current_img < photos.children.length - 1) {
+                    current_img++
+                    photos.style.transitionDuration = '0.5s';
+                    photos.style.transform = `translate(-${current_img * 70}vw)`;
+                    } else {
+                        return;
+                    }
+            });
+
+            previous.addEventListener('click', () => {
+                if (current_img > 0) {
+                    current_img--
+                    photos.style.transitionDuration = '0.5s';
+                    photos.style.transform = `translate(-${current_img * 70}vw)`;
+                    } else {
+                        return;
+                    }
+            });
+        // ADD MEMORY JERICO 
+        let todos2 = [];   // array for ToDo's
+
+        // event listener for form 
+        todoForm2.addEventListener('submit', function(event) {
+            event.preventDefault();     //prevent page from reloading when submitting form
+            addTodo(todoInput2.value);   // call addTodo function with input box value
+        });
+
+        // add ToDo function 
+        function addTodo(item) {
+            if (item !== '') {          // if input is not empty
+                const todo = {          // takes input and creates object(JSON syntax!)
+                    id: Date.now(),
+                    name: item, 
+                    completed: false
+            };
+                todos2.push(todo);           //add item to array
+                addToLocalStorage(todos2)    // stores and then run the render function 
+                todoInput2.value = '';       // clears text box
+            }
+        };
+
+        function renderTodos(todos2) {               // renders to the <ul> takes the array as arguments
+            todoItemsList2.innerHTML = '';           // clears the <ul> 
+            todos2.forEach(function(item) {          // loops through array   
+                const checked = item.completed ? 'checked' : null;      // checks if item is completed
+                const li = document.createElement('li');                // create <li>
+                li.setAttribute('class', 'item');                       // set li class "item"
+                li.setAttribute('data-key', item.id);                 // set data-key to item id
+                if (item.completed === true) {                          // line through completed
+                    li.classList.add('checked');
+                }                                                       // assign text to <li>
+                li.innerHTML = `<input type="checkbox" class="checkbox" ${checked}>  
+                ${item.name}
+                <button class="delete-button">X</button>`;
+                todoItemsList2.append(li);                               // assign <li> to <ul>
+            });
+        }    
+
+        function addToLocalStorage(todos2) {                             // add to localStorage w/ arrays as arguments
+            localStorage.setItem('todos2', JSON.stringify(todos2));       // convert array to JSON string (key = 'todos'/value=array)
+            renderTodos(todos2);                                         // runs entire render function after saving to localStorage to show changes
+        }
+
+        function getFromLocalStorage() {                                // function to get storage
+            const reference = localStorage.getItem('todos2');            // variable for items
+            if (reference) {                                            // if exists
+                todos2 = JSON.parse(reference);                          // array = parse the storage
+                renderTodos(todos2);                                     // run the render function to show them
+            } 
+        }
+
+        function toggle(id) {                                       // toggle to complete or not complete  
+            todos2.forEach(function(item) {                          // loop takes each item as argument  
+                if (item.id == id) {                                // if item id matches
+                    item.completed = !item.completed;               // item.completed = false
+                }                                                   // us == not === cause of different types
+            })
+            addToLocalStorage(todos2);                           // update list function
+        }
+
+        function deleteTodo(id) {                                   // delete a todo
+            todos2 = todos2.filter(function(item) {                   // filter() array, takes each item as argument
+                return item.id != id;                               // filters out <li> with id and updates array
+            });                                                     // return item.id == false ... makes new array of item.id false
+                addToLocalStorage(todos2)                            // update list function
+        }
+
+        getFromLocalStorage();                                              // initialize function to get storage and show 
+
+        todoItemsList2.addEventListener('click', function(event) {           // function listen to delete and check 'clicks'
+            if (event.target.type === 'checkbox') {                                          // if click is checkbox 
+                toggle(event.target.parentElement.getAttribute('data-key'));                 // toggle the state
+            }
+            if (event.target.classList.contains('delete-button')) {                          // if click is delete
+                deleteTodo(event.target.parentElement.getAttribute('data-key'));  // (get id from data-key attributes value                   
+            }                                                                     // of parent <li> where the delte-button 
+        });
+    </script>
+</body>
+</html>

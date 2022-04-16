@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Medellin to La Ceja</title>
+</head>
+<body>
+    <div class="nonnav">
+        <h1>Medellin to La Ceja</h1>
+        <h2>|</h2>
+        <h2>A smooth exit ...</h2>
+    </div>
+
+    <div class="viewport2">
+        <section class="photos">
+            <div class="box">
+                <img src="medellin/one.jpeg" alt="">
+                <p class="caption">El Mirador de Yeyo | Welcome to Medellin</p>
+            </div>
+            <div class="box">
+                <img src="medellin/two.jpeg" alt="">
+                <p class="caption">El Mirador de Yeyo</p>
+            </div>
+            <div class="box">
+                <img src="medellin/three.jpeg" alt="">
+                <p class="caption">Plaza Botero</p>
+            </div>
+            <div class="box"> 
+                <img src="medellin/four.jpeg" alt="">
+                <p class="caption">Plaza Botero</p>
+            </div>
+            <div class="box">
+                <img src="medellin/five.jpeg" alt="">
+                <p class="caption">Comuna 13 Tour</p>
+            </div>
+            <div class="box">
+                <img src="medellin/six.jpeg" alt="">
+                <p class="caption">Comuna 13 Tour</p>
+            </div>
+            <div class="box">
+                <img src="medellin/seven.jpeg" alt="">
+                <p class="caption">Comuna 13 Tour</p>
+            </div>
+            <div class="box">
+                <img src="medellin/eight.JPG" alt="">
+                <p class="caption">Survived leaving Medellin | Welcome to La Ceja</p>
+            </div>
+            <div class="box">
+                <img src="medellin/nine.jpeg" alt="">
+                <p class="caption">Dinner and a DJ in La Ceja</p>
+            </div>
+            <div class="box">
+                <img src="medellin/ten.jpeg" alt="">
+                <p class="caption">Blessings my son</p>
+            </div>
+            <div class="box">
+                <img src="medellin/eleven.jpeg" alt="">
+                <p class="caption">Solid start on day 2</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="some-buttons2">
+        <button id="previous">Previous</button>
+        <button id="next">Next</button>
+    </div>
+
+<!-- ADD A MEMORY SECION -->
+
+    <div class="container">
+
+        <h1>Add A Memory</h1>
+
+        <form class="form6">
+            <input type="text" class="todo-input6" placeholder="What do you remember?">
+            <button type="submit" class="add-button">Add</button>
+        </form>
+    
+    </div> 
+    <div class="list-container">  
+        <ul class="todo-items6">
+            
+        </ul>
+    </div>
+
+    <script>
+        // DOM FOR PICTURE SCROLL pages
+        const photos = document.querySelector('.photos');
+        const next = document.getElementById('next');
+        const previous = document.getElementById('previous');
+        // DOM FOR MEMORIES medellin
+        const todoForm6 = document.querySelector('.form6');          
+        const todoInput6 = document.querySelector('.todo-input6');        
+        const todoItemsList6 = document.querySelector('.todo-items6'); 
+        
+        let current_img = 0;
+        
+        // PICTURE SCROLL pages
+    next.addEventListener('click', () => {
+        if (current_img < photos.children.length - 1) {
+            current_img++
+            photos.style.transitionDuration = '0.5s';
+            photos.style.transform = `translate(-${current_img * 70}vw)`;
+            } else {
+                return;
+            }
+    });
+
+    previous.addEventListener('click', () => {
+        if (current_img > 0) {
+            current_img--
+            photos.style.transitionDuration = '0.5s';
+            photos.style.transform = `translate(-${current_img * 70}vw)`;
+            } else {
+                return;
+            }
+    });
+
+    // ADD MEMORY medellin page 
+    let todos6 = [];   // array for ToDo's
+
+    // event listener for form 
+    todoForm6.addEventListener('submit', function(event) {
+        event.preventDefault();     //prevent page from reloading when submitting form
+        addTodo(todoInput6.value);   // call addTodo function with input box value
+    });
+
+    // add ToDo function 
+    function addTodo(item) {
+        if (item !== '') {          // if input is not empty
+            const todo = {          // takes input and creates object(JSON syntax!)
+                id: Date.now(),
+                name: item, 
+                completed: false
+        };
+            todos6.push(todo);           //add item to array
+            addToLocalStorage(todos6)    // stores and then run the render function 
+            todoInput6.value = '';       // clears text box
+        }
+    };
+
+    function renderTodos(todos6) {               // renders to the <ul> takes the array as arguments
+        todoItemsList6.innerHTML = '';           // clears the <ul> 
+        todos6.forEach(function(item) {          // loops through array   
+            const checked = item.completed ? 'checked' : null;      // checks if item is completed
+            const li = document.createElement('li');                // create <li>
+            li.setAttribute('class', 'item');                       // set li class "item"
+            li.setAttribute('data-key', item.id);                 // set data-key to item id
+            if (item.completed === true) {                          // line through completed
+                li.classList.add('checked');
+            }                                                       // assign text to <li>
+            li.innerHTML = `<input type="checkbox" class="checkbox" ${checked}>  
+            ${item.name}
+            <button class="delete-button">X</button>`;
+            todoItemsList6.append(li);                               // assign <li> to <ul>
+        });
+    }    
+
+    function addToLocalStorage(todos6) {                             // add to localStorage w/ arrays as arguments
+        localStorage.setItem('todos6', JSON.stringify(todos6));       // convert array to JSON string (key = 'todos'/value=array)
+        renderTodos(todos6);                                         // runs entire render function after saving to localStorage to show changes
+    }
+
+    function getFromLocalStorage() {                                // function to get storage
+        const reference = localStorage.getItem('todos6');            // variable for items
+        if (reference) {                                            // if exists
+            todos6 = JSON.parse(reference);                          // array = parse the storage
+            renderTodos(todos6);                                     // run the render function to show them
+        } 
+    }
+
+    function toggle(id) {                                       // toggle to complete or not complete  
+        todos6.forEach(function(item) {                          // loop takes each item as argument  
+            if (item.id == id) {                                // if item id matches
+                item.completed = !item.completed;               // item.completed = false
+            }                                                   // us == not === cause of different types
+        })
+        addToLocalStorage(todos6);                           // update list function
+    }
+
+    function deleteTodo(id) {                                   // delete a todo
+        todos6 = todos6.filter(function(item) {                   // filter() array, takes each item as argument
+            return item.id != id;                               // filters out <li> with id and updates array
+        });                                                     // return item.id == false ... makes new array of item.id false
+            addToLocalStorage(todos6)                            // update list function
+    }
+
+    getFromLocalStorage();                                              // initialize function to get storage and show 
+
+    todoItemsList6.addEventListener('click', function(event) {           // function listen to delete and check 'clicks'
+        if (event.target.type === 'checkbox') {                                          // if click is checkbox 
+            toggle(event.target.parentElement.getAttribute('data-key'));                 // toggle the state
+        }
+        if (event.target.classList.contains('delete-button')) {                          // if click is delete
+            deleteTodo(event.target.parentElement.getAttribute('data-key'));  // (get id from data-key attributes value                   
+        }                                                                     // of parent <li> where the delte-button 
+    });
+    </script>
+</body>
+</html>

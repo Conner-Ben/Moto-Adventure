@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Moto Adventure</title>
+</head>
+<body>
+    <nav class="navbar">
+        <li>Moto Adventure</li>
+        <li>|</li>
+        <li>Colombia, September 2021</li>
+        <li>|</li>
+        <li>Hágale Pues</li>
+    </nav>
+    
+    <main class="main">
+        <h1 class="title">Moto Adventures</h1>
+        <h2 class="papi">No papi, gracias</h2>
+    </main>
+
+    <section class="map">
+        <div class="grid">
+            <a class="one">7. Retiro</a>
+            <a class="two">1. Medellin</a>
+            <a class="three">6. Fredonia</a>
+            <a class="four">2. La Ceja</a>
+            <a class="five">5. Jardin</a>
+            <a class="six">3. Aguadas</a>
+            <a class="seven">4. Jerico</a>
+        </div>
+    </section>
+
+    <div class="viewport">
+        <section class="medellin flex-container">
+            <div class="container1">
+                <div>
+                    <h4>Day 1 | Medellin to La Ceja</h4>
+                    <h5>Lessons in Survival</h5>
+                    <h5>Travel Time: 1hr 20min</h5>
+                    <h5>Distance: 27 miles</h5>
+                    <button><a href="medellin.html" target="_blank">Let's Go</a></button>
+                </div>
+                <div class="image1">
+                    <img class="map-photos" src="photo12.jpeg" alt="map">
+                </div>
+            </div>
+            <div class="container1">
+                <div class="image1">
+                    <img class="map-photos" src="photo13.jpeg" alt="map">
+                </div>
+                <div>
+                    <h4>Day 2 | La Ceja to Aguadas</h4>
+                    <h5>Learning to Fly</h5>
+                    <h5>Travel Time: 4 hrs</h5>
+                    <h5>Distance: 66 miles</h5>
+                    <button><a href="aguadas.html" target="_blank">Let's Go</a></button>
+                </div>
+            </div>
+            <div class="container1">
+                <div>
+                    <h4>Day 3 | Aguadas to Jerico</h4>
+                    <h5>Let's ride</h5>
+                    <h5>Travel Time: 2hr 24min</h5>
+                    <h5>Distance: 57 miles</h5>
+                    <button><a href="jerico.html" target="_blank">Let's Go</a></button>
+                </div>
+                <div class="image1">
+                    <img class="map-photos" src="photo14.jpeg" alt="map">
+                </div>
+            </div>
+            <div class="container1">
+                <div class="image1">
+                    <img class="map-photos" src="photo15.jpeg" alt="map">
+                </div>
+                <div>
+                    <h4>Day 4 | Jerico to Jardin</h4>
+                    <h5>Learning to Fall after Papaya Milkshakes</h5>
+                    <h5>Travel Time: 2hr 07min</h5>
+                    <h5>Distance: 59 miles</h5>
+                    <button><a href="jardin.html" target="_blank">Let's Go</a></button>
+                </div>
+            </div>
+            <div class="container1">
+                <div>
+                    <h4>Day 5 | Jardin to Retiro</h4>
+                    <h5>Longest ride of the trip</h5>
+                    <h5>Travel Time: 5hr 40min</h5>
+                    <h5>Distance: 99.9 miles</h5>
+                    <button><a href="retiro.html" target="_blank">Let's Go</a></button>
+                </div>
+                <div class="image1">
+                    <img class="map-photos" src="photo16.jpeg" alt="map">
+                </div>
+            </div>
+            <div class="container1">
+                <div class="image1">
+                    <img class="map-photos" src="photo17.jpeg" alt="map">
+                </div>
+                <div>
+                    <h4>Day 6 | Retiro to Medellin</h4>
+                    <h5>El Cielo</h5>
+                    <h5>Travel Time: 54min</h5>
+                    <h5>Distance: 22 miles</h5>
+                    <button><a href="el_cielo.html" target="_blank">Let's Go</a></button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="some-buttons">
+        <button id="previous">Previous</button>
+        <button id="next">Next</button>
+    </div>
+
+    <script>
+        // DOM Cache for Photo Scroll Index
+        const next = document.getElementById('next');
+        const previous = document.getElementById('previous');
+        const images = document.querySelector('.medellin');
+        // PIC SCROLL index
+        let current_img = 0;
+
+        next.addEventListener('click', () => {
+            if (current_img < images.children.length - 1) {
+                current_img++
+                images.style.transitionDuration = '0.5s';
+                images.style.transform = `translate(-${current_img * 70}vw)`;
+                } else {
+                    return;
+                }
+        });
+
+        previous.addEventListener('click', () => {
+            if (current_img > 0) {
+                current_img--
+                images.style.transitionDuration = '0.5s';
+                images.style.transform = `translate(-${current_img * 70}vw)`;
+                } else {
+                    return;
+                }
+        });
+    </script>
+</body>
+</html>
+

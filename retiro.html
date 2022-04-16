@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Jardin to Retiro</title>
+</head>
+<body>
+    <div class="nonnav">
+        <h1>Jarin to Retiro</h1>
+        <h2>|</h2>
+        <h2>Longest ride of the trip</h2>
+    </div>
+
+    <div class="viewport2">
+        <section class="photos">
+            <div class="box">
+                <img src="/Retiro/GOPR0887.JPG" alt="">
+                <p class="caption">Waiting for the road to open up .. hopefully before dark</p>
+            </div>
+            
+        </section>
+    </div>
+
+    <div class="some-buttons2">
+        <button id="previous">Previous</button>
+        <button id="next">Next</button>
+    </div>
+
+    <!-- ADD A MEMORY SECION -->
+
+    <div class="container">
+
+        <h1>Add A Memory</h1>
+
+        <form class="form4">
+            <input type="text" class="todo-input4" placeholder="What do you remember?">
+            <button type="submit" class="add-button">Add</button>
+        </form>
+    
+    </div> 
+    <div class="list-container">  
+        <ul class="todo-items4">
+            
+        </ul>
+    </div>
+
+    <script>
+        // DOM FOR PICTURE SCROLL pages
+        const photos = document.querySelector('.photos');
+        const next = document.getElementById('next');
+        const previous = document.getElementById('previous');
+        // DOM for memory retiro
+        const todoForm4 = document.querySelector('.form4');          
+        const todoInput4 = document.querySelector('.todo-input4');        
+        const todoItemsList4 = document.querySelector('.todo-items4');
+
+        let current_img = 0;
+        
+        // PICTURE SCROLL pages
+        next.addEventListener('click', () => {
+                if (current_img < photos.children.length - 1) {
+                    current_img++
+                    photos.style.transitionDuration = '0.5s';
+                    photos.style.transform = `translate(-${current_img * 70}vw)`;
+                    } else {
+                        return;
+                    }
+            });
+
+            previous.addEventListener('click', () => {
+                if (current_img > 0) {
+                    current_img--
+                    photos.style.transitionDuration = '0.5s';
+                    photos.style.transform = `translate(-${current_img * 70}vw)`;
+                    } else {
+                        return;
+                    }
+            });
+                //  ADD MEMORY RETIRO
+        let todos4 = [];   // array for ToDo's
+
+        // event listener for form 
+        todoForm4.addEventListener('submit', function(event) {
+            event.preventDefault();     //prevent page from reloading when submitting form
+            addTodo(todoInput4.value);   // call addTodo function with input box value
+        });
+
+        // add ToDo function 
+        function addTodo(item) {
+            if (item !== '') {          // if input is not empty
+                const todo = {          // takes input and creates object(JSON syntax!)
+                    id: Date.now(),
+                    name: item, 
+                    completed: false
+            };
+                todos4.push(todo);           //add item to array
+                addToLocalStorage(todos4)    // stores and then run the render function 
+                todoInput4.value = '';       // clears text box
+            }
+        };
+
+        function renderTodos(todos4) {               // renders to the <ul> takes the array as arguments
+            todoItemsList4.innerHTML = '';           // clears the <ul> 
+            todos4.forEach(function(item) {          // loops through array   
+                const checked = item.completed ? 'checked' : null;      // checks if item is completed
+                const li = document.createElement('li');                // create <li>
+                li.setAttribute('class', 'item');                       // set li class "item"
+                li.setAttribute('data-key', item.id);                 // set data-key to item id
+                if (item.completed === true) {                          // line through completed
+                    li.classList.add('checked');
+                }                                                       // assign text to <li>
+                li.innerHTML = `<input type="checkbox" class="checkbox" ${checked}>  
+                ${item.name}
+                <button class="delete-button">X</button>`;
+                todoItemsList4.append(li);                               // assign <li> to <ul>
+            });
+        }    
+
+        function addToLocalStorage(todos4) {                             // add to localStorage w/ arrays as arguments
+            localStorage.setItem('todos4', JSON.stringify(todos4));       // convert array to JSON string (key = 'todos'/value=array)
+            renderTodos(todos4);                                         // runs entire render function after saving to localStorage to show changes
+        }
+
+        function getFromLocalStorage() {                                // function to get storage
+            const reference = localStorage.getItem('todos4');            // variable for items
+            if (reference) {                                            // if exists
+                todos4 = JSON.parse(reference);                          // array = parse the storage
+                renderTodos(todos4);                                     // run the render function to show them
+            } 
+        }
+
+        function toggle(id) {                                       // toggle to complete or not complete  
+            todos4.forEach(function(item) {                          // loop takes each item as argument  
+                if (item.id == id) {                                // if item id matches
+                    item.completed = !item.completed;               // item.completed = false
+                }                                                   // us == not === cause of different types
+            })
+            addToLocalStorage(todos4);                           // update list function
+        }
+
+        function deleteTodo(id) {                                   // delete a todo
+            todos4 = todos4.filter(function(item) {                   // filter() array, takes each item as argument
+                return item.id != id;                               // filters out <li> with id and updates array
+            });                                                     // return item.id == false ... makes new array of item.id false
+                addToLocalStorage(todos4)                            // update list function
+        }
+
+        getFromLocalStorage();                                              // initialize function to get storage and show 
+
+        todoItemsList4.addEventListener('click', function(event) {           // function listen to delete and check 'clicks'
+            if (event.target.type === 'checkbox') {                                          // if click is checkbox 
+                toggle(event.target.parentElement.getAttribute('data-key'));                 // toggle the state
+            }
+            if (event.target.classList.contains('delete-button')) {                          // if click is delete
+                deleteTodo(event.target.parentElement.getAttribute('data-key'));  // (get id from data-key attributes value                   
+            }                                                                     // of parent <li> where the delte-button 
+        });
+    </script>
+</body>
+</html>

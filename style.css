@@ -1,0 +1,655 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Public+Sans:wght@300;400&family=Roboto+Mono&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    font-family: 'nunito', sans-serif;
+    background-color: rgb(1, 1, 107);
+}
+
+/* NAVBAR */
+
+.navbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1rem;
+    color: white;
+    background-color: rgb(170, 1, 1);
+    border-bottom: 2px solid rgb(220, 220, 0);
+}
+
+.navbar li {
+    list-style: none;   
+}
+
+.navbar li a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar li a:hover {
+    color: rgb(220, 220, 0);;
+    text-decoration: overline;
+}
+
+/* TITLE AND PICTURE */
+
+.main {
+    margin: 4rem auto;
+    width: 80vw;
+    height: 80vh;
+    background-image: url(./11D4843C-CE0E-4137-A11C-19CECE8DEDF1_1_105_c.jpeg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    border: 3px solid rgb(220, 220, 0);
+    border-radius: 1rem;
+    
+}
+
+.main .title {
+    color: white; 
+    font-size: 3rem;
+    margin-top: 0;
+    padding: 3rem;
+    text-align: right;
+    opacity: 1;
+}
+
+.main .papi {
+    color: white;
+    text-align: right;
+    padding: 1rem 3rem;
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* BIG MAP */
+
+.map {
+    background-image: url(./homepage.jpeg);
+    width: 80vw;
+    height: 80vh;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    margin: 4rem auto;
+    border: 3px solid rgb(220, 220, 0);
+    border-radius: 1rem;
+}
+
+.grid {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+    'one two three'
+    'four five six'
+    'seven eight nine'
+    'ten eleven twelve';
+    justify-items: center;
+    align-items: center;
+    padding-top: 5rem;
+    grid-gap: 3rem;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.grid a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    background-color: rgb(170, 1, 1);
+    padding: 1rem;
+    border: 2px solid rgb(220, 220, 0);
+    border-radius: 1rem;
+}
+
+.grid a:hover {
+    cursor:default;
+    background-color: rgb(1, 1, 107);
+    border-radius: 2rem;
+    transition: all ease-in-out 400ms;
+}
+
+.one {
+    grid-area: one;
+}
+
+.two {
+    grid-area: three;
+}
+
+.three {
+    grid-area: four;
+}
+
+.four {
+    grid-area: six;
+}
+
+.five {
+    grid-area: seven;
+}
+
+.six {
+    grid-area: nine;
+}
+
+.seven {
+    grid-area: eleven;
+}
+
+/* Seperate Maps */
+
+.medellin {
+    width: 70vw;
+    height: 70vh;
+    margin: 0 auto;
+    background-color: rgb(170, 1, 1);
+}
+
+.container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    gap: 3rem;
+}
+
+.map-photos {
+    width: 420px;
+    height: 300px;
+    border-radius: 1rem;
+    border: 2px solid rgb(1, 1, 107);
+}
+
+.medellin button {
+    padding: .5rem 1rem;
+    background-color: rgb(220, 220, 0);
+    border: 2px solid rgb(220, 220, 0);
+    border-radius: 1rem;
+    text-transform: uppercase;
+}
+
+.medellin button a {
+    text-decoration: none;
+    color: black; 
+    font-weight: bold;
+}
+
+.medellin button a:hover {
+    color: white; 
+}
+
+.medellin button:hover {
+    cursor: pointer;
+    background-color: rgb(1, 1, 107);
+    transition: all ease-in-out 300ms;
+}
+
+/* Index Page View-Port Changes */
+
+.some-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.some-buttons button {
+  padding: 1rem;
+  width: 10rem;
+  height: 3rem;
+  margin: 1.5rem ;
+  background-color: rgb(220, 220, 0);
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 2px solid rgb(220, 220, 0);
+  border-radius: 1rem;
+}
+
+.some-buttons button:hover {
+  cursor: pointer;
+  background-color: rgb(170, 1, 1);
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+
+.viewport {
+  width: 70vw;
+  height: 70vh;
+  overflow: hidden;
+  margin: 0 auto;
+  background-color: rgb(170, 1, 1);
+  border: 2px solid rgb(220, 220, 0);
+  border-radius: 1rem;
+}
+
+.viewport .container1 {
+  width: 70vw;
+  height: 70vh;
+  margin: 0 auto;
+}
+
+/* Medellin Page */
+
+.nonnav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(170, 1, 1);
+    color: white;
+    border-bottom: 2px solid rgb(220, 220, 0);
+}
+
+.nonnav h1 {
+    font-size: 3vw;
+}
+
+.nonnav h2 {
+    font-size: 2.5vw;
+}
+
+.viewport2 {
+    width: 70vw;
+    height: 80vh;
+    overflow: hidden;
+    margin: 2rem auto;
+    background-color: rgb(170, 1, 1);
+    border: 2px solid rgb(220, 220, 0);
+    border-radius: 1rem;
+}
+
+.photos {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.box {
+    width: 70vw;
+    height: 70vh;
+    margin: 0 auto;
+}
+
+
+.photos img {
+    max-width: 60vw;
+    max-height: 60vh;
+    display: block;
+    border: 2px solid rgb(220, 220, 0);
+    border-radius: 1rem;
+    margin: 2rem auto;
+}
+
+.caption {
+    display: block;
+    color: white; 
+    margin: 1rem;
+    text-align: center;
+}
+
+.some-buttons2 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.some-buttons2 button {
+    padding: .5rem;
+    width: 10rem;
+    height: 3rem;
+    margin: 0 auto 2rem;
+    background-color: rgb(220, 220, 0);
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 2px solid rgb(220, 220, 0);
+    border-radius: 1rem;
+}
+
+.some-buttons2 button:hover {
+    cursor: pointer;
+    background-color: rgb(170, 1, 1);
+}
+
+/* Media Qs */
+
+@media screen and (max-width: 800px) {
+    .container1 {
+        flex-direction: column;
+    }
+
+    .medellin {
+        max-height: 100vh;
+    }
+
+    .grid {
+        grid-gap: 4rem;
+    }
+    .grid a {
+        padding: .5rem;
+        font-size: .8rem;
+    }
+
+    /* INDEX PAGE VIEWPORT */
+    .viewport {
+      width: 70vw;
+    }
+
+    .viewport .container1 {
+      width: 70vw;
+    }
+
+    .map-photos {
+      width: 300px;
+      height: 180px;
+    }
+
+    .container1 {
+      line-height: .5;
+      gap: .5rem
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+    .grid {
+        grid-gap: 3rem;
+        margin-left: 15px;
+    }
+}
+
+/* Add a Memory Medellin*/
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: rgb(170, 1, 1);
+    margin: 0 auto;
+    width: 70vw; 
+    border: 3px solid rgb(220, 220, 0);
+    border-radius: 1em;
+  }
+  
+  h1 {
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  .form, .form6 {
+    padding: 1.5em;
+  }
+  
+  .todo-input, .todo-input6 {
+    width: 200px;
+    border: 2px solid rgb(220, 220, 0);
+    box-shadow: 0 0 5px 0;
+    outline: none;
+    border-radius: 1em;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 1rem;
+  }
+  
+  .add-button {
+    background-color: rgb(1, 1, 107);
+    color: #fff;
+    border: 2px solid rgb(220, 220, 0);
+    outline: none;
+    border-radius: .5em;
+    padding: .4em;
+    font-size: 1.2em;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: rgb(1, 1, 107);
+  }
+  
+  .list-container {
+    margin: 2vw 10vw;
+  }
+
+  .todo-items, .todo-items6 {
+    list-style: none;
+  }
+  
+  .item {
+    background-color: rgb(170, 1, 1);
+    color: white;
+    padding: .6em;
+    font-size: 1.1rem;
+    border: 2px solid rgb(220, 220, 0);
+    border-radius: 1em;
+    margin-top: 1rem;
+
+  }
+  
+  .item:first-child {
+    border-top-left-radius: .35em;
+    border-top-right-radius: .35em;
+  }
+  
+  .item:last-child {
+    border-bottom-left-radius: .35em;
+    border-bottom-right-radius: .35em;
+  }
+  
+  .checkbox {
+    margin-right: 10px;
+  }
+  
+  .delete-button {
+    float: right;
+    background-color: rgb(1, 1, 107);
+    border: none;
+    outline: none;
+    border-radius: .3em;
+    padding: 2px 5px;
+    margin-left: 10px;
+    font-size: 1.1rem;
+    font-weight: 550;
+    color: white;
+  }
+  
+  .checked { 
+    text-decoration: line-through;
+  }
+
+  /* ADD MEMORY AGUADAS */
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: rgb(170, 1, 1);
+    margin: 0 auto;
+    width: 70vw; 
+    border: 3px solid rgb(220, 220, 0);
+    border-radius: 1em;
+  }
+  
+  h1 {
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  .form1 {
+    padding: 1.5em;
+  }
+  
+  .todo-input1 {
+    width: 200px;
+    border: 2px solid rgb(220, 220, 0);
+    box-shadow: 0 0 5px 0;
+    outline: none;
+    border-radius: 1em;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 1rem;
+  }
+  
+  .add-button {
+    background-color: rgb(1, 1, 107);
+    color: #fff;
+    border: 2px solid rgb(220, 220, 0);
+    outline: none;
+    border-radius: .5em;
+    padding: .4em;
+    font-size: 1.2em;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: rgb(1, 1, 107);
+  }
+  
+  .list-container {
+    margin: 2vw 10vw;
+  }
+
+  .todo-items1 {
+    list-style: none;
+  }
+  
+  .item {
+    background-color: rgb(170, 1, 1);
+    color: white;
+    padding: .6em;
+    font-size: 1.1rem;
+    border: 2px solid rgb(220, 220, 0);
+    border-radius: 1em;
+    margin-top: 1rem;
+
+  }
+  
+  .item:first-child {
+    border-top-left-radius: .35em;
+    border-top-right-radius: .35em;
+  }
+  
+  .item:last-child {
+    border-bottom-left-radius: .35em;
+    border-bottom-right-radius: .35em;
+  }
+  
+  .checkbox {
+    margin-right: 10px;
+  }
+  
+  .delete-button {
+    float: right;
+    background-color: rgb(1, 1, 107);
+    border: none;
+    outline: none;
+    border-radius: .3em;
+    padding: 2px 5px;
+    margin-left: 10px;
+    font-size: 1.1rem;
+    font-weight: 550;
+    color: white;
+  }
+  
+  .checked { 
+    text-decoration: line-through;
+  }
+
+  /* Jerico Add Memory */
+
+  .todo-items2 {
+    list-style: none;
+  }
+
+  .todo-input2 {
+    width: 200px;
+    border: 2px solid rgb(220, 220, 0);
+    box-shadow: 0 0 5px 0;
+    outline: none;
+    border-radius: 1em;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 1rem;
+  }
+
+  .form2 {
+    padding: 1.5em;
+  }
+
+    /* Jardin Add Memory */
+
+    .todo-items3 {
+      list-style: none;
+    }
+  
+    .todo-input3 {
+      width: 200px;
+      border: 2px solid rgb(220, 220, 0);
+      box-shadow: 0 0 5px 0;
+      outline: none;
+      border-radius: 1em;
+      padding: 10px;
+      margin-right: 10px;
+      font-size: 1rem;
+    }
+  
+    .form3 {
+      padding: 1.5em;
+    }
+
+    /* Retiro Add Memory */
+
+    .todo-items4 {
+      list-style: none;
+    }
+  
+    .todo-input4 {
+      width: 200px;
+      border: 2px solid rgb(220, 220, 0);
+      box-shadow: 0 0 5px 0;
+      outline: none;
+      border-radius: 1em;
+      padding: 10px;
+      margin-right: 10px;
+      font-size: 1rem;
+    }
+  
+    .form4 {
+      padding: 1.5em;
+    }
+
+        /* el_cielo Add Memory */
+
+        .todo-items5 {
+          list-style: none;
+        }
+      
+        .todo-input5 {
+          width: 200px;
+          border: 2px solid rgb(220, 220, 0);
+          box-shadow: 0 0 5px 0;
+          outline: none;
+          border-radius: 1em;
+          padding: 10px;
+          margin-right: 10px;
+          font-size: 1rem;
+        }
+      
+        .form5 {
+          padding: 1.5em;
+        }
